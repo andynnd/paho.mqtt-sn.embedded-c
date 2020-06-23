@@ -14,7 +14,7 @@ $ make clean
 By default, a gateway for UDP is built.    
 In order to create a gateway for UDP6 or XBee, SENSORNET argument is required.  
  
-MQTT-SNGateway, MQTT-SNLogmonitor and *.conf files are copied into ../ directory.    
+MQTT-SNGateway, MQTT-SNLogmonitor and *.conf files are copied into ../../ directory.    
 If you want to install the gateway into specific directories, enter a command line as follows:
 ````
 $ make install INSTALL_DIR=/path/to/your_directory CONFIG_DIR=/path/to/your_directory
@@ -38,9 +38,8 @@ $ sudo ./MQTT-SNGateway [-f Config file name]
 ````
 
 ### **How to Change the configuration of the gateway**    
-**../gateway.conf**   Contents are follows: 
-   
-<pre><dev>    
+**gateway.conf**   Contents are follows: 
+````
 
 # config file of MQTT-SN Gateway
 #
@@ -97,20 +96,23 @@ ApiMode=2
 # LOG
 ShearedMemory=NO;
 
-</dev></pre>    
+````
 
-**BrokerName** to specify a domain name of the Broker, and **BrokerPortNo** is a port No of the Broker. **BrokerSecurePortNo** is for TLS connection.       
-**MulticastIP** and **MulticastPortNo** is a multicast address for GWSEARCH messages. Gateway is waiting GWSEARCH  and when receiving it send GWINFO message via MulticastIP address. Clients can get the gateway address (Gateway IP address and **GatewayPortNo**) from GWINFO message by means of std::recvfrom().
-Client should know the MulticastIP and MulticastPortNo to send a SEARCHGW message.    
-**GatewayId** is used by GWINFO message.    
-**KeepAlive** is a duration of ADVERTISE message in seconds.    
-when **AggregatingGateway** or **ClientAuthentication** is **YES**, All clients which connect to the gateway must be declared by a **ClientsList** file.       
-Format of the file is ClientId and SensorNetwork Address. e.g. IP address and Port No etc, in CSV. more detail see clients.conf.    
-When **QoS-1** is **YES**, QoS-1 PUBLISH is available. All clients which send QoS-1 PUBLISH must be specified by Client.conf file. 
-When **PredefinedTopic** is **YES**, **Pre-definedTopicId**s  specified by **PredefinedTopicList** are effective. This file defines Pre-definedTopics of the clients. In this file, ClientID,TopicName and TopicID are declared in CSV format.    
-When **Forwarder** is **YES**, Forwarder Encapsulation Message is available. Connectable Forwarders must be declared by a **ClientsList** file.     
+- **BrokerName** to specify a domain name of the Broker.
+- **BrokerPortNo** is a port No of the Broker. 
+- **BrokerSecurePortNo** is for TLS connection.       
+- **MulticastIP** and **MulticastPortNo** is a multicast address for **GWSEARCH** messages. 
+    + Gateway is waiting **GWSEARCH**.  and when receiving it send **GWINFO** message via Multicast address. 
+    + Clients can get the gateway address (**Gateway IP address** and - **GatewayPortNo**) from **GWINFO** message by means of std::recvfrom().
+    - Client should know the **MulticastIP** and **MulticastPortNo** to send a **SEARCHGW** message.    
+- **GatewayId** is used by **GWINFO** message.    
+- **KeepAlive** is a duration of **ADVERTISE** message in seconds.    
+- when **AggregatingGateway** or **ClientAuthentication** is **YES**, All clients which connect to the gateway must be declared by a **ClientsList** file. Format of the file is ClientId and SensorNetwork Address. e.g. IP address and Port No etc, in CSV. more detail see clients.conf.    
+- When **QoS-1** is **YES**, **QoS-1 PUBLISH** is available. All clients which send QoS-1 PUBLISH must be specified by **ClientsList** file. 
+- When **PredefinedTopic** is **YES**, **Pre-definedTopicId**s  specified by **PredefinedTopicList** are effective. This file defines Pre-definedTopics of the clients. In this file, ClientID,TopicName and TopicID are declared in CSV format.    
+- When **Forwarder** is **YES**, Forwarder Encapsulation Message is available. Connectable Forwarders must be declared by a **ClientsList** file.     
  
-### ** How to monitor the gateway from remote. **
+### How to monitor the gateway from remote. 
 Change gateway.conf as follows:
 ```
 # LOG
