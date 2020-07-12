@@ -370,6 +370,8 @@ int LoRaLink::send(LoRaLinkPayloadType_t type, const uint8_t* payload, uint16_t 
     _serialPortTx->send( addr->_devAddr );
     chks = addr->_devAddr;
 
+
+
     _serialPortTx->send(type);
     chks += type;
 
@@ -439,10 +441,11 @@ int LoRaLink::recv(uint8_t* buf)
     		fd = _serialPortTx->_fd;
 		}
 
-		if (read(fd, buf, 1) )
+		if ( read(fd, buf, 1) == 1 )
 		{
 			if ( *buf == ESCAPE )
 			{
+				D_NWSTACK( " %02x",buf[0] );
 				if ( read(fd, buf, 1) == 1 )
 				{
 					*buf = PAD ^ *buf;

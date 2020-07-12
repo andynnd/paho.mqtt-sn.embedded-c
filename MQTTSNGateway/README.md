@@ -7,7 +7,7 @@ This Gateway can run as a transparent or aggregating Gateway by specifying the g
 ````
 $ git clone -b develop https://github.com/eclipse/paho.mqtt-sn.embedded-c   
 $ cd paho.mqtt-sn.embedded-c/MQTTSNGateway       
-$ make [SENSORNET={udp6|xbee}] 
+$ make [SENSORNET={udp6|xbee|loralink}] 
 $ make install   
 $ make clean    
 ````      
@@ -92,6 +92,12 @@ GatewayUDP6Hops=1
 Baudrate=38400
 SerialDevice=/dev/ttyUSB0
 ApiMode=2
+
+
+#LoRaLink
+BaudrateLoRaLink=115200
+DeviceRxLoRaLink=/dev/ttyLoRaLinkRx
+DeviceTxLoRaLink=/dev/ttyLoRaLinkTx
 
 # LOG
 ShearedMemory=NO;

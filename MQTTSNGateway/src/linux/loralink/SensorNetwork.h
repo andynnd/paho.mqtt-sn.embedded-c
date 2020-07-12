@@ -25,7 +25,7 @@ using namespace std;
 
 namespace MQTTSNGW
 {
-#define DEBUG_NWSTACK
+//#define DEBUG_NWSTACK
 
 #ifdef  DEBUG_NWSTACK
   #define D_NWSTACK(...) printf(__VA_ARGS__); fflush(stdout)
